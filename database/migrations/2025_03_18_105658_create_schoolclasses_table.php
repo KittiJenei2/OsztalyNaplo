@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('schoolclasses', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('year');
         });
     }
 
