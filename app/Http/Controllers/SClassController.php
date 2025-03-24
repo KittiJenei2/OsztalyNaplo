@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+//use App\Http\Controllers\Controller;
+use App\Models\SClassModel;
 use Illuminate\Http\Request;
 
 class SClassController extends Controller
@@ -12,7 +13,8 @@ class SClassController extends Controller
      */
     public function index()
     {
-        //
+        $schoolclasses = SClassModel::all();
+        return view('schoolclasses.index', compact('schoolclasses'));
     }
 
     /**
@@ -20,7 +22,7 @@ class SClassController extends Controller
      */
     public function create()
     {
-        //
+        return view('schoolclasses.create');
     }
 
     /**
@@ -28,7 +30,17 @@ class SClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:2|max:5',
+            'year' => 'required|min:3|max:5',
+        ]);
+
+        $sclass = new SClassModel();
+        $sclass->name = $request->input('name');
+        $sclass->year = $request->input('year');
+        $sclass->save();
+
+        return redirect()->route('schoolclasses.index')->with("success", "Osztály sikeresen létrehozva.");
     }
 
     /**
