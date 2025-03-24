@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CSubjectController;
+use App\Http\Controllers\MarkController;
+use App\Http\Controllers\SClassController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,26 +24,31 @@ Route::middleware('auth')->group(function () {
     Route::post('/students', [StudentController::class, 'store'])->name('students.store');
     Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
     Route::get('/students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::patch('/students/{student}', [StudentController::class, 'update'])->name('students.update');
     Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 
     Route::post('/marks', [MarkController::class, 'store'])->name('marks.store');
     Route::get('/marks/create', [MarkController::class, 'create'])->name('marks.create');
     Route::get('/marks/{mark}/edit', [MarkController::class, 'edit'])->name('marks.edit');
+    Route::patch('/marks/{mark}', [MarkController::class, 'update'])->name('marks.update');
     Route::delete('/marks/{mark}', [MarkController::class, 'destroy'])->name('marks.destroy');
 
     Route::post('/classes_subjects', [CSubjectController::class, 'store'])->name('classes_subjects.store');
     Route::get('/classes_subjects/create', [CSubjectController::class, 'create'])->name('classes_subjects.create');
     Route::get('/classes_subjects/{csubject}/edit', [CSubjectController::class, 'edit'])->name('classes_subjects.edit');
+    Route::patch('/classes_subjects/{csubject}', [CSubjectController::class, 'update'])->name('classes_subjects.update');
     Route::delete('/classes_subjects/{csubject}', [CSubjectController::class, 'destroy'])->name('classes_subjects.destroy');
 
     Route::post('/subjects', [SubjectController::class, 'store'])->name('subjects.store');
     Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
     Route::get('/subjects/{subject}/edit', [SubjectController::class, 'edit'])->name('subjects.edit');
+    Route::patch('/subjects/{subject}', [SubjectController::class, 'update'])->name('subjects.update');
     Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('subjects.destroy');
 
     Route::post('/schoolclasses', [SClassController::class, 'store'])->name('schoolclasses.store');
     Route::get('/schoolclasses/create', [SClassController::class, 'create'])->name('schoolclasses.create');
     Route::get('/schoolclasses/{sclass}/edit', [SClassController::class, 'edit'])->name('schoolclasses.edit');
+    Route::patch('/schoolclasses/{sclass}', [SClassController::class, 'update'])->name('schoolclasses.update');
     Route::delete('/schoolclasses/{sclass}', [SClassController::class, 'destroy'])->name('schoolclasses.destroy');
 
 
