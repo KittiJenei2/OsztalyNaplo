@@ -9,4 +9,11 @@ class StudentModel extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function schoolclasses()
+    {
+        return $this->belongsTo(SClassModel::class);
+    }
+
+
 }

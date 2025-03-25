@@ -11,4 +11,8 @@ class SClassModel extends Model
     public $timestamps = false;
     protected $table = 'schoolclasses';
 
+    public function students()
+    {
+        return $this->hasMany(StudentModel::class);
+    }
 }

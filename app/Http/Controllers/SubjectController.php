@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\SubjectModel;
 
 class SubjectController extends Controller
 {
@@ -12,7 +13,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = SubjectModel::all();
+        return view('subjects.index', compact('subjects'));
     }
 
     /**
@@ -20,7 +22,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('subjects.create');
     }
 
     /**
@@ -28,7 +30,15 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:4|max:50',
+        ]);
+
+        $subject = new SubjectModel();
+        $subject->name = $request->input('name');
+        $subject->save();
+
+        return redirect()->route('subjects.index')->with("success", "Tantárgy sikeresen létrehozva.");
     }
 
     /**
@@ -36,7 +46,8 @@ class SubjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $subject = SubjectModel::find($id);
+        return view('subjects.show', compact('subject'));
     }
 
     /**
@@ -44,7 +55,8 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subject = SubjectModel::find($id);
+        return view('subjects.edit', compact('subject'));
     }
 
     /**
@@ -52,7 +64,15 @@ class SubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:4|max:50',
+        ]);
+
+        $subject = SubjectModel::find($id);
+        $subject->name = $request->name;
+        $subject->save();
+
+        return redirect()->route('subjects.index')->with('success', 'Tantárgy sikeresen módosítva.');
     }
 
     /**
@@ -60,6 +80,9 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $subject = SubjectModel::find($id);
+        $subject->delete();
+
+        return redirect()->route('subjects.index')->with('success', 'Tantárgy sikeresen törölve.');
     }
 }

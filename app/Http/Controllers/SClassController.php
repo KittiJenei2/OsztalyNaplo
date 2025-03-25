@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use App\Models\SClassModel;
 use Illuminate\Http\Request;
 
@@ -48,7 +48,8 @@ class SClassController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $sclass = SClassModel::find($id);
+        return view('schoolclasses.show', compact('sclass'));
     }
 
     /**
@@ -56,7 +57,8 @@ class SClassController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $sclass = SClassModel::find($id);
+        return view('schoolclasses.edit', compact('sclass'));
     }
 
     /**
@@ -64,7 +66,17 @@ class SClassController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:4|max:50',
+            'year' => 'required|min:3|max:5',
+        ]);
+
+        $sclass = SClassModel::find($id);
+        $sclass->name = $request->name;
+        $sclass->year = $request->year;
+        $sclass->save();
+
+        return redirect()->route('subjects.index')->with('success', 'Osztály sikeresen módosítva.');
     }
 
     /**
@@ -72,6 +84,9 @@ class SClassController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sclass = SClassModel::find($id);
+        $sclass->delete();
+
+        return redirect()->route('schoolclasses.index')->with('success', 'Osztály sikeresen törölve.');
     }
 }
