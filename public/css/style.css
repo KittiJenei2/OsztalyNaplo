@@ -5,27 +5,16 @@
 }
 
 :root {
-    --dark: #260a33;
-    --medium: #631a86;
-    --medium-light: #9927ce;
+    --dark: #1b4585;
+    --medium: #336dc4;
+    --medium-light: #6495de;
     --light: #ffe9ce;
-    --danger: #ffe156;
-    --danger-dark: #ff9f1c;
+    --danger: #e3fcfc;
+    --danger-dark: #a7c2c2;
 }
 
 body {
-    background-color: #ace4fc;
-    background-image: radial-gradient(
-            at 49% 43%,
-            hsla(169, 65%, 62%, 1) 0px,
-            transparent 50%
-        ),
-        radial-gradient(at 10% 73%, hsla(309, 84%, 60%, 1) 0px, transparent 50%),
-        radial-gradient(at 56% 66%, hsla(138, 97%, 78%, 1) 0px, transparent 50%),
-        radial-gradient(at 65% 6%, hsla(207, 67%, 61%, 1) 0px, transparent 50%),
-        radial-gradient(at 88% 77%, hsla(316, 87%, 77%, 1) 0px, transparent 50%),
-        radial-gradient(at 3% 25%, hsla(175, 84%, 76%, 1) 0px, transparent 50%),
-        radial-gradient(at 40% 37%, hsla(3, 75%, 69%, 1) 0px, transparent 50%);
+    background-color: #e1f4f7;
     min-height: 100dvh;
     line-height: 1.2em;
     font-size: 120%;
@@ -126,7 +115,7 @@ header li {
     margin: 0 0 0 1em;
 }
 header a {
-    color: #fff;
+    color: #064991;
     font-weight: bold;
 }
 

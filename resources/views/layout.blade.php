@@ -6,23 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osztálynapló</title>
 
-    <!-- Scripts -->
+    <!-- Scripts 
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/jquery-3.7.1.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.7.1.js') }}"></script>-->
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/all.css') }}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Quicksand&display=swap" rel="stylesheet">
 
-    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
 </head>
 
 <body>
-<header></header>
-<main>
-    @yield('content')
-</main>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{route('schoolclasses.index')}}">Osztályok</a></li>
+                <li><a href="{{route('schoolclasses.create')}}">Új osztály</a></li>
+
+                <li><a href="{{route('subjects.index')}}">Tantárgyak</a></li>
+                <li><a href="{{route('subjects.create')}}">Új tantárgy</a></li>
+
+                <li><a href="{{route('students.index')}}">Tanulók</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        @yield('content')
+    </main>
 <footer>
-    <p>&copy; 2025 </p>
+    <p>&copy;2025 osztálynapló</p>
 </footer>
 </body>
 

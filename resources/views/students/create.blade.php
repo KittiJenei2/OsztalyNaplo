@@ -1,3 +1,23 @@
-<div>
-    <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
-</div>
+@extends('layout')
+
+@section('content')
+
+<h1>Új tanuló hozzáadása</h1>
+
+@error('name')
+    <div class="alert alert-warning">{{ $message }}</div>
+@enderror
+
+<form action="{{ route('students.store') }}" method="post">
+    @csrf
+    <fieldset>
+        <label for="name">Osztály</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label for="year">Év</label>
+        <input type="text" name="year" id="year">
+    </fieldset>
+    <button typ="submit">Mentés</button>
+</form>
+
+@endsection

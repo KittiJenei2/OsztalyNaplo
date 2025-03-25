@@ -1,3 +1,7 @@
-<div>
-    <!-- When there is no desire, all things are at peace. - Laozi -->
-</div>
+@extends('layout')
+
+@section('content')
+<h1>"{{$subject->name}}" tantárgy részletek</h1>
+
+
+@endsection
