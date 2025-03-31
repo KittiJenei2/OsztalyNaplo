@@ -23,12 +23,14 @@
         <nav>
             <ul>
                 <li><a href="{{route('schoolclasses.index')}}">Osztályok</a></li>
-                <li><a href="{{route('schoolclasses.create')}}">Új osztály</a></li>
 
                 <li><a href="{{route('subjects.index')}}">Tantárgyak</a></li>
-                <li><a href="{{route('subjects.create')}}">Új tantárgy</a></li>
 
                 <li><a href="{{route('students.index')}}">Tanulók</a></li>
+
+                <li><a href="{{route('marks.index')}}">Jegyek</a></li>
+
+                <li><a href="{{route('classes_subjects.index')}}">Hozzárendelés</a></li>
             </ul>
         </nav>
     </header>

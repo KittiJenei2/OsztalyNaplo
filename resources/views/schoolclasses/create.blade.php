@@ -13,7 +13,8 @@
     <fieldset>
         <label for="name">Osztály</label>
         <input type="text" name="name" id="name">
-        <br>
+    </fieldset>
+    <fieldset>
         <label for="year">Év</label>
         <input type="text" name="year" id="year">
     </fieldset>

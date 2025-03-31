@@ -2,7 +2,9 @@
 
 @section('content')
 
-<h1>Új tantárgy hozzáadása</h1>
+<h1>Új tantárgy hozzáadása
+    
+</h1>
 
 @error('name')
     <div class="alert alert-warning">{{ $message }}</div>

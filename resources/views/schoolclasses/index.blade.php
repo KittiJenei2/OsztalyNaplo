@@ -2,7 +2,9 @@
 
 @section('content')
 
-<h1>Osztályok</h1>
+<h1>Osztályok
+    <a href="{{ route('schoolclasses.create') }}" title="Új osztály">🏫</a>
+</h1>
 
 @if(session('success'))
 <div class="alert alert-success">
