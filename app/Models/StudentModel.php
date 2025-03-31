@@ -9,6 +9,13 @@ class StudentModel extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = 'students';
+
+    protected $fillable = [
+        'name',
+        'gender',
+        'sclass_id',
+    ];
 
     public function schoolclasses()
     {
