@@ -4,18 +4,33 @@
 
 <h1>Új tanuló hozzáadása</h1>
 
-@error('name')
-    <div class="alert alert-warning">{{ $message }}</div>
-@enderror
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <form action="{{ route('students.store') }}" method="post">
     @csrf
     <fieldset>
-        <label for="name">Osztály</label>
+        <label for="name">Tanuló neve</label>
         <input type="text" name="name" id="name">
-        <br>
-        <label for="year">Év</label>
-        <input type="text" name="year" id="year">
+    </fieldset>
+    <fieldset>
+        <label for="gender">Tanuló neme</label>
+        <input type="text" name="gender" id="gender">
+    </fieldset>
+    <fieldset>
+        <label for="sclass_id">Tanuló osztálya</label>
+        <select name="sclass_id" id="sclass_id">
+            @foreach ($schoolclasses as $sclass)
+            <option value="{{ $sclass->id }}">{{ $sclass->name }}</option>
+            @endforeach
+        </select>
     </fieldset>
     <button typ="submit">Mentés</button>
 </form>
