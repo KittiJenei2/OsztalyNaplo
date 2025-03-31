@@ -54,7 +54,8 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $student = StudentModel::find($id);
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -62,7 +63,11 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $student = StudentModel::find($id);
+
+        $schoolclasses = SClassModel::all();
+
+        return view('students.edit', compact('student', 'schoolclasses'));
     }
 
     /**
@@ -70,7 +75,14 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $student = StudentModel::find($id);
+
+        $student->sclass_id = $request->input('sclass_id');
+        $student->name = $request->input('name');
+        $student->gender = $request->input('gender');
+        $student->save();
+
+        return redirect()->route('students.index')->with("success", "Tanuló sikeresen módosítva.");
     }
 
     /**
@@ -78,6 +90,12 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $student = StudentModel::find($id);
+
+        if ($student) {
+            $student->delete();
+            return redirect()->route('students.index')->with('success', 'Tanuló sikeresen törölve.');
+        }
+        return redirect()->route('students.index')->with('error', 'Hiba történt a törlés során.');
     }
 }

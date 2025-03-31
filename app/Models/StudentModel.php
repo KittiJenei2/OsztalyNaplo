@@ -11,15 +11,16 @@ class StudentModel extends Model
     public $timestamps = false;
     protected $table = 'students';
 
-    protected $fillable = [
-        'name',
-        'gender',
-        'sclass_id',
-    ];
+    protected $fillable = ['name','gender','sclass_id',];
 
     public function schoolclasses()
     {
-        return $this->belongsTo(SClassModel::class);
+        return $this->belongsTo(SClassModel::class, 'sclass_id');
+    }
+    
+    public function marks()
+    {
+        return $this->hasMany(MarkModel::class);
     }
 
 
