@@ -35,7 +35,7 @@ class MarkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'mark' => 'required|min:1|max:10',
+            'mark' => 'required|regex:/^[1-5]$/',
             'subject_id' => 'required|exists:subjects,id',
             'student_id' => 'required|exists:students,id',
         ]);
@@ -65,6 +65,7 @@ class MarkController extends Controller
      */
     public function edit(string $id)
     {
+        
         $mark = MarkModel::find($id);
 
         $students = StudentModel::all();
@@ -78,6 +79,12 @@ class MarkController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'mark' => 'required|regex:/^[1-5]$/',
+            'subject_id' => 'required|exists:subjects,id',
+            'student_id' => 'required|exists:students,id',
+        ]);
+
         $mark = MarkModel::find($id);
 
         $mark->subject_id = $request->input('subject_id');
