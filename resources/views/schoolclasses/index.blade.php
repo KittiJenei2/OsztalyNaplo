@@ -14,13 +14,14 @@
 
 <ul>
     @foreach($schoolclasses as $sclass)
-    <li>{{ $sclass->name }} - {{ $sclass->year }} 
+    <li class="actions">
+    {{ $sclass->name }} - {{ $sclass->year }} 
     <a href="{{ route('schoolclasses.show', $sclass->id) }}" class="button">Megjelenítés</a> 
     <a href="{{ route('schoolclasses.edit', $sclass->id) }}" class="button">Módosítás</a>
     <form action="{{ route('schoolclasses.destroy', $sclass->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit">Törlés</button>
+        <button type="submit" class="danger">Törlés</button>
     </li>
     @endforeach
 </ul>
