@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\CSubjectController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\SClassController;
@@ -70,7 +72,13 @@ Route::get('/subjects/{id}', [SubjectController::class, 'show'])->name('subjects
 Route::get('/schoolclasses', [SClassController::class, 'index'])->name('schoolclasses.index');
 Route::get('/schoolclasses/{id}', [SClassController::class, 'show'])->name('schoolclasses.show');
 
-
+Route::post('/logout', function (Request $request)
+{
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect()->route('students.index');
+})->name('logout');
 
 
 
