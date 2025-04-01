@@ -31,6 +31,18 @@
                 <li><a href="{{route('marks.index')}}">Jegyek</a></li>
 
                 <li><a href="{{route('classes_subjects.index')}}">Hozzárendelés</a></li>
+
+                @auth
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">Kijelentkezés</button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ url('/login') }}">Bejelentkezés</a></li>
+                    <li><a href="{{ url('/register') }}">Regisztráció</a></li>
+                @endauth
             </ul>
         </nav>
     </header>
