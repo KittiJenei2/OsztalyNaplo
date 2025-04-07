@@ -16,7 +16,7 @@
     @foreach($students as $student)
     <li class="actions">
         {{ $student->name}} - {{$student->schoolclasses->name}}
-        <a href="{{ route('students.show', $student->id) }}" class="button">Megjelenít</a>
+        <a href="{{ route('students.show', $student->id) }}" class="button">Mutat</a>
         <a href="{{ route('students.edit', $student->id) }}" class="button">Módosít</a>
         <form action="{{ route('students.destroy', $student->id) }}" method="POST">
             @csrf

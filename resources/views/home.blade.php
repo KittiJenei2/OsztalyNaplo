@@ -1,25 +1,37 @@
 @extends('layout')
 
 @section('content')
-    <div style="padding: 1rem;">
-        <label for="year">Évfolyam:</label>
-        <select id="year">
-            <option value="">-- Válassz --</option>
-            @foreach(\App\Models\SClassModel::select('year')->distinct()->get() as $item)
-                <option value="{{ $item->year }}">{{ $item->year }}</option>
-            @endforeach
-        </select>
+    <div style="padding: 2rem; max-width: 80%; margin: 0 auto;">
+        <h2 class="text-center">Kezdőlap</h2>
 
-        <label for="class">Osztály:</label>
-        <select id="class" disabled>
-            <option value="">-- Előbb évfolyamot válassz --</option>
-        </select>
+        <form>
+            <div class="form-group">
+                <label for="year">Évfolyam:</label>
+                <select id="year">
+                    <option value="">-- Válassz --</option>
+                    @foreach(\App\Models\SClassModel::select('year')->distinct()->get() as $item)
+                        <option value="{{ $item->year }}">{{ $item->year }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-        <h3>Osztályba járó tanulók:</h3>
-        <ul id="student-list"></ul>
+            <div class="form-group">
+                <label for="class">Osztály:</label>
+                <select id="class" disabled>
+                    <option value="">-- Előbb évfolyamot válassz --</option>
+                </select>
+            </div>
+        </form>
 
-        <h3>Az osztály átlaga:</h3>
-        <div id="average-mark">-- Válassz osztályt --</div>
+        <h3>Tanulók:</h3>
+        <ul id="student-list" class="list-group">
+            <!-- Tanulók itt jelennek meg -->
+        </ul>
+
+        <div class="average">
+            <h3>Átlag:</h3>
+            <div id="average-mark">-- Válassz osztályt --</div>
+        </div>
     </div>
 
     <script>
