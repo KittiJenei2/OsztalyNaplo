@@ -55,7 +55,10 @@ class StudentController extends Controller
     public function show(string $id)
     {
         $student = StudentModel::find($id);
-        return view('students.show', compact('student'));
+        $student = StudentModel::with('marks.subjects')->find($id);
+        $averageMark = $student->marks()->avg('mark');
+
+        return view('students.show', compact('student', 'averageMark'));
     }
 
     /**
