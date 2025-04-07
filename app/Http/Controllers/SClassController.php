@@ -89,4 +89,11 @@ class SClassController extends Controller
 
         return redirect()->route('schoolclasses.index')->with('success', 'Osztály sikeresen törölve.');
     }
+
+    public function getByYear($year)
+    {
+        $classes = \App\Models\SClassModel::where('year', $year)->get();
+        return response()->json($classes);
+    }
+
 }

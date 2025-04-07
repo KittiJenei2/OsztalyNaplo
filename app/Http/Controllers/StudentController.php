@@ -98,4 +98,13 @@ class StudentController extends Controller
         }
         return redirect()->route('students.index')->with('error', 'Hiba történt a törlés során.');
     }
+
+    public function getByClass($id)
+    {
+        $students = StudentModel::where('sclass_id', $id)
+            ->orderByRaw('LOWER(name) ASC')
+            ->get();
+    
+        return response()->json($students);
+    }    
 }
