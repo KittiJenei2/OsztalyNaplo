@@ -4,7 +4,7 @@ Szabó Anna;nő;20
 Tóth Gergő;férfi;5
 Horváth Eszter;nő;17
 Kiss Tamás;férfi;19
-Varga Zoltán;férfi;2
+Varga Zoltán;férfi;4
 Molnár Dóra;nő;14
 Lukács Bence;férfi;7
 Balogh Nóra;nő;20
@@ -14,11 +14,11 @@ Juhász Dávid;férfi;4
 Simon Lilla;nő;18
 Rácz Kristóf;férfi;9
 Fekete Bianka;nő;15
-Kelemen Áron;férfi;3
+Kelemen Áron;férfi;6
 Sipos Viktória;nő;17
 Veres Attila;férfi;6
 Takács Laura;nő;20
 Csabai Ádám;férfi;11
 Orbán Zsófia;nő;13
-Hegedűs Patrik;férfi;1
+Hegedűs Patrik;férfi;12
 Bíró Emese;nő;12
