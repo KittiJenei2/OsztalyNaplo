@@ -9,6 +9,11 @@ use App\Http\Controllers\MarkController;
 use App\Http\Controllers\SClassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\HomeController;
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/class/average/{classId}', [HomeController::class, 'getClassAverage']);
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,6 +58,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/schoolclasses/{sclass}', [SClassController::class, 'update'])->name('schoolclasses.update');
     Route::delete('/schoolclasses/{sclass}', [SClassController::class, 'destroy'])->name('schoolclasses.destroy');
 
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 
 });
 
@@ -80,5 +87,8 @@ Route::post('/logout', function (Request $request)
     return redirect()->route('students.index');
 })->name('logout');
 
-
+Route::middleware('auth')->group(function () {
+    Route::get('/schoolclasses/by-year/{year}', [SClassController::class, 'getByYear']);
+    Route::get('/students/by-class/{classId}', [StudentController::class, 'getByClass']);
+});
 
