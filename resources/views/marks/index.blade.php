@@ -4,6 +4,8 @@
 
 <h1>Osztályzatok
     <a href="{{ route('marks.create') }}" title="Új jegy">✏️</a>
+    <a href="{{ route('marks.index', ['sort_by' => 'student_name', 'sort_dir' => 'asc']) }}" title="ABC">A-Z</a>
+    <a href="{{ route('marks.index', ['sort_by' => 'student_name', 'sort_dir' => 'desc']) }}" title="CBA">Z-A</a>
 </h1>
 
 @if(session('success'))

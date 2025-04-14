@@ -4,6 +4,8 @@
 
 <h1>Osztályok
     <a href="{{ route('schoolclasses.create') }}" title="Új osztály">🏫</a>
+    <a href="{{ route('schoolclasses.index', ['sort-by' => 'name', 'sort_dir' => 'asc']) }}" title="ABC">A-Z</a>
+    <a href="{{ route('schoolclasses.index', ['sort-by' => 'name', 'sort_dir' => 'desc']) }}" title="CBA">Z-A</a>
 </h1>
 
 @if(session('success'))

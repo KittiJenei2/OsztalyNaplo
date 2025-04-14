@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -84,11 +84,13 @@ Route::post('/logout', function (Request $request)
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect()->route('students.index');
+    return redirect()->route('home');
 })->name('logout');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/schoolclasses/by-year/{year}', [SClassController::class, 'getByYear']);
-    Route::get('/students/by-class/{classId}', [StudentController::class, 'getByClass']);
-});
+Route::get('/schoolclasses/by-year/{year}', [SClassController::class, 'getByYear']);
+Route::get('/students/by-class/{classId}', [StudentController::class, 'getByClass']);
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
 

@@ -4,6 +4,8 @@
 
 <h1>Tantárgyak
     <a href="{{ route('subjects.create') }}" title="Új osztály">📚</a>
+    <a href="{{ route('subjects.index', ['sort_by' => 'name', 'sort_dir' => 'asc']) }}" title="ABC">A-Z</a>
+    <a href="{{ route('subjects.index', ['sort_by' => 'name', 'sort_dir' => 'desc']) }}" title="CBA">Z-A</a>
 </h1>
 
 @if(session('success'))

@@ -4,6 +4,8 @@
 
 <h1>Tanulók
     <a href="{{ route('students.create') }}" title="Új tanuló">🤓</a>
+    <a href="{{ route('students.index', ['sort_by' => 'name', 'sort_dir' => 'asc']) }}" title="ABC">A-Z</a>
+    <a href="{{ route('students.index', ['sort_by' => 'name', 'sort_dir' => 'desc']) }}" title="CBA">Z-A</a>
 </h1>
 
 @if(session('success'))
