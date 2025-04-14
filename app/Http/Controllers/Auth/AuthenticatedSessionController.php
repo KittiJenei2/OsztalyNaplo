@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
             
             // Itt irányítjuk át a felhasználót a marks.index oldalra
-            return redirect()->route('students.index');
+            return redirect()->route('home');
         }
     
         return back()->withErrors([

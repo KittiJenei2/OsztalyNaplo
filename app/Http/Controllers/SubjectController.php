@@ -13,7 +13,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = SubjectModel::all();
+        $sort_by = request()->query('sort_by', 'name');
+        $sort_dir = request()->query('sort_dir', 'asc');
+        $subjects = SubjectModel::orderBy($sort_by, $sort_dir)->get();
         return view('subjects.index', compact('subjects'));
     }
 

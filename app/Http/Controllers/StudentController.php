@@ -14,7 +14,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = StudentModel::all();
+        $sort_by = request()->query('sort_by', 'name');
+        $sort_dir = request()->query('sort_dir', 'asc');
+        $students = StudentModel::orderBy($sort_by, $sort_dir)->get();
         return view('students.index' , compact('students'));
     }
 

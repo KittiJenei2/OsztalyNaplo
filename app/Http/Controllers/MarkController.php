@@ -15,7 +15,17 @@ class MarkController extends Controller
      */
     public function index()
     {
-        $marks = MarkModel::all();
+        $sort_by = request()->query('sort_by', 'id');
+        $sort_dir = request()->query('sort_dir', 'asc');
+
+        $marks = MarkModel::with('students')->get();
+
+        if ($sort_by === 'student_name') {
+            $marks = $marks->sortBy(function($mark) {
+                return $mark->students->name ?? '';
+            }, SORT_REGULAR, $sort_dir === 'desc');
+        }
+        
         return view('marks.index' , compact('marks'));
     }
 
