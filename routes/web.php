@@ -14,6 +14,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/class/average/{classId}', [HomeController::class, 'getClassAverage']);
 
+Route::get('/students/export', [StudentController::class, 'export'])->name('students.export');
+Route::get('/students/send-pdf-email', [StudentController::class, 'sendPdfByEmail'])->name('students.sendPdfByEmail');
+
 
 Route::get('/', function () {
     return view('welcome');

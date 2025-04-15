@@ -18,7 +18,6 @@
     @foreach($marks as $mark)
     <li class="actions">
         {{ $mark->students->name}} - {{$mark->subjects->name}} - {{ $mark->mark }}
-        <a href="{{ route('marks.show', $mark->id) }}" class="button">Megjelenít</a>
         <a href="{{ route('marks.edit', $mark->id) }}" class="button">Módosít</a>
         <form action="{{ route('marks.destroy', $mark->id) }}" method="POST">
             @csrf

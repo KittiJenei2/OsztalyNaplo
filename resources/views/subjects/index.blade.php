@@ -18,7 +18,6 @@
     @foreach($subjects as $subject)
     <li class="actions">
         {{ $subject->name }}
-        <a href="{{ route('subjects.show', $subject->id) }}" class="button">Megjelenítés</a> 
         <a href="{{ route('subjects.edit', $subject->id) }}" class="button">Módosítás</a>
         <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST">
             @csrf

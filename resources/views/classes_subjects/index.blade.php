@@ -16,7 +16,6 @@
     @foreach($classes_subjects as $csub)
     <li class="actions">
         {{ $csub->schoolclasses->name}} - {{$csub->subjects->name}}
-        <a href="{{ route('classes_subjects.show', $csub->id) }}" class="button">Megjelenít</a>
         <a href="{{ route('classes_subjects.edit', $csub->id) }}" class="button">Módosít</a>
         <form action="{{ route('classes_subjects.destroy', $csub->id) }}" method="POST">
             @csrf
