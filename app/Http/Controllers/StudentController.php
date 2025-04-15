@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\SClassModel;
 use App\Models\StudentModel;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StudentListMail;
+
+
 
 class StudentController extends Controller
 {
@@ -16,8 +21,21 @@ class StudentController extends Controller
     {
         $sort_by = request()->query('sort_by', 'name');
         $sort_dir = request()->query('sort_dir', 'asc');
-        $students = StudentModel::orderBy($sort_by, $sort_dir)->get();
-        return view('students.index' , compact('students'));
+        $search = request()->query('search');
+
+        $students = StudentModel::query();
+
+        if ($search) {
+            $students->where('name', 'LIKE', '%' . strtolower($search) . '%');
+        }
+
+        if (request()->has('download_pdf')) {
+            $pdf = PDF::loadView('students.pdf', compact('students'));
+            return $pdf->download('students-list.pdf');
+        }
+    
+        $students = $students->orderBy($sort_by, $sort_dir)->paginate(5)->withQueryString();
+        return view('students.index' , compact('students', 'search'));
     }
 
     /**
@@ -111,5 +129,51 @@ class StudentController extends Controller
             ->get();
     
         return response()->json($students);
-    }    
+    }
+    
+    public function export()
+{
+    $students = StudentModel::with('schoolclasses')->get();
+
+    $headers = [
+        'Content-Type' => 'text/csv; charset=UTF-8',
+        'Content-Disposition' => 'attachment; filename="students.csv"',
+    ];
+
+    $callback = function () use ($students) {
+        $handle = fopen('php://output', 'w');
+
+        // UTF-8 BOM írás biztonságosan
+        fwrite($handle, "\xEF\xBB\xBF");
+
+        // Fejléc – pontosvesszővel elválasztva
+        fputcsv($handle, ['Név', 'Osztály', 'Nem'], ';');
+
+        // Tartalom – minden adatmező biztosan string
+        foreach ($students as $student) {
+            fputcsv($handle, [
+                (string) $student->name,
+                (string) ($student->schoolclasses->name ?? 'N/A'),
+                (string) $student->gender,
+            ], ';');
+        }
+
+        fclose($handle);
+    };
+
+    return response()->stream($callback, 200, $headers);
+}
+
+public function sendPdfByEmail()
+{
+    $students = StudentModel::all();
+    $pdf = PDF::loadView('students.pdf', compact('students'));
+
+    Mail::to('recipient@example.com')->send(new StudentListMail($pdf->output()));
+
+    return redirect()->route('students.index')->with('success', 'PDF sikeresen elküldve e-mailben.');
+}
+
+
+
 }
